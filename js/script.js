@@ -104,6 +104,13 @@ function updateProgessBar(e){
     }
 }
 
+function setProgressBar(e){
+    const width = this.clientWidth
+    const clickx = e.offsetX;
+    const {duration} = music;
+    music.currentTime = (clickx / width)*duration;
+}
+
 playBtn.addEventListener('click', ()=>{
     isPlaying ? pauseMusic() : playMusic();
 });
@@ -112,5 +119,10 @@ prevBtn.addEventListener('click', prevSong);
 
 nextBtn.addEventListener('click', nextSong);
 
-music.addEventListener('timeupdate', updateProgessBar)
+music.addEventListener('timeupdate', updateProgessBar);
+
+music.addEventListener('ended', nextSong);
+
+
+progressContainer.addEventListener('click', setProgressBar);
 
